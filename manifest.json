@@ -15,7 +15,9 @@
                 "src/content/content.js" 
             ],
             "matches": [
-                "*://hentaivn.tv/*"
+                "*://hentaivn.tv/*",
+                "*://hentaivn.lat/*",
+                "*://hentaivn.lol/*"
             ]
         }
     ],
