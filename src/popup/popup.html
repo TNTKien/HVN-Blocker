@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="./style.css">
+        <!-- <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"name="viewport"> -->
+        <title>HVN Blocker</title>
+    </head>
+    <body>
+        <!-- <h1>HVN BLOBKER 
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </h1> -->
+        <div>
+            <input type="text" id="id" placeholder="Nhập User-ID muốn chặn">
+            <button id="addId">Add</button>
+        </div>
+
+        <div>
+            <input type="text" id="string" placeholder="Nhập Tag muốn chặn" list="autocomplete">
+            <datalist id="autocomplete"></datalist>
+            <button id="addString">Add</button>
+        </div>
+
+        <div>
+            <button id="clear">Clear</button>
+        </div>
+
+        <div style="padding-bottom: 10px;">
+            <div id="notification"> </div>
+        </div>
+
+        <script src="./popup.js"></script>
+    </body>
+</html>
