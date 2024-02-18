@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "HentaiVN Blocker",
     "description": "như tên gọi.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "permissions": [
         "notifications",
         "storage",
