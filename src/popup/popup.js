@@ -248,7 +248,7 @@ let suggestions = [
 ];
 
 document.getElementById('string').addEventListener('input', function() {
-    let input = this.value;
+    let input = this.value.toLocaleLowerCase();
     let datalist = document.getElementById('autocomplete');
 
     datalist.innerHTML = "";
