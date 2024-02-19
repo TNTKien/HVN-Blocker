@@ -15,7 +15,7 @@ window.onload = async function On() {
         if(BlockedUsers) {
             console.log(BlockedUsers); 
         } else {
-            console.log('No blocked users found');
+            console.log('No blocked Users found');
         }
     });
     
@@ -35,6 +35,14 @@ window.onload = async function On() {
         const url = items[i].getElementsByTagName("a")[0].href;
         await RemoveBlocked(items[i], url);
     };
+
+    const searchli = document.getElementsByClassName("search-li");
+    if(searchli.length == 0) return;
+    for (let i = 0; i < searchli.length; i++) {
+        const url = searchli[i].getElementsByTagName("a")[0].href;
+        await RemoveBlocked(searchli[i], url);
+    };
+
 };  
 
 async function RemoveBlocked(li, url) {
