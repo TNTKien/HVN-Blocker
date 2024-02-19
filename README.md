@@ -1,6 +1,7 @@
 ## Các tính năng hiện có:
 - [x] Ẩn truyện có chứa tag không mong muốn.
 - [x] Ẩn truyện đăng bởi chủ thớt chỉ định.
+- [x] Hỗ trợ trang tìm kiếm nâng cao.
 
 ## Cài đặt
 - Tải về [tại đây](https://github.com/TNTKien/HVN-Blocker/releases) và giải nén file vừa tải.
