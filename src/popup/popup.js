@@ -1,11 +1,11 @@
-function showNotification(text) {
+function showNotification(text, time) {
     var notification = document.getElementById('notification');
-    notification.textContent = text;
+    notification.innerHTML = text;
     notification.style.display = 'block';
     notification.style.backgroundColor = '#4CAF50';
     setTimeout(function() {
         notification.style.display = 'none';
-    }, 3000);
+    }, time || 3000);
 }
 function showErrNotification(text) {
     var notification = document.getElementById('notification');
@@ -33,6 +33,12 @@ document.getElementById('addId').addEventListener('click', function() {
         if (!blockedUsers) {
             blockedUsers = [];
         }
+    
+        if (blockedUsers.includes(id)) {
+            showErrNotification('Bạn đã chặn chủ thớt này rồi!');
+            return;
+        }
+
         blockedUsers.push(id);
         chrome.storage.sync.set({blockedUsers: blockedUsers}, function() {
             showNotification('Thêm thành công!');
@@ -52,6 +58,10 @@ document.getElementById('addString').addEventListener('click', function() {
         if (!blockedTags) {
             blockedTags = [];
         }
+        if(blockedTags.includes(string)) {
+            showErrNotification('Bạn đã chặn tag này rồi!');
+            return;
+        }
         blockedTags.push(string);
         chrome.storage.sync.set({blockedTags: blockedTags}, function() {
             showNotification('Thêm thành công!');
@@ -65,7 +75,7 @@ document.getElementById('clear').addEventListener('click', function() {
         if (error) {
             console.error(error);
         } else {
-            showNotification('Xóa thành công!');
+            showNotification('Reset thành công!');
         }
     });
 });
@@ -259,5 +269,27 @@ document.getElementById('string').addEventListener('input', function() {
         let option = document.createElement('option');
         option.value = suggestion;
         datalist.appendChild(option);
+    });
+});
+
+document.getElementById('show').addEventListener('click', async function() {
+    let getBlockedTags = new Promise((resolve, reject) => {
+        chrome.storage.sync.get('blockedTags', function(data) {
+            resolve(data.blockedTags);
+        });
+    });
+
+    let getBlockedUsers = new Promise((resolve, reject) => {
+        chrome.storage.sync.get('blockedUsers', function(data) {
+            resolve(data.blockedUsers);
+        });
+    });
+
+    Promise.all([getBlockedTags, getBlockedUsers]).then(values => {
+        let msg = (!values[0] && !values[1]) ? 'Bạn chưa chặn Tag và Chủ thớt nào!' : '';
+        msg += values[0] ? `Blocked Tags: ${values[0].join(', ')}<br>` : '';
+        msg += values[1] ? `Blocked Users: ${values[1].join(', ')}` : '';
+
+        showNotification(msg, 5000);
     });
 });

@@ -1,3 +1,7 @@
+## Changelogs
+- 20/02/2023: Thêm nút hiển thị tag và chủ thớt đã chặn.
+- 19/02/2023: Hỗ trợ trang tìm kiếm nâng cao.
+
 ## Các tính năng hiện có:
 - [x] Ẩn truyện có chứa tag không mong muốn.
 - [x] Ẩn truyện đăng bởi chủ thớt chỉ định.

@@ -23,8 +23,8 @@ html
     border-radius: 5px;
     cursor: pointer;
 }
-#clear {
-    padding: 10px 20px;
+#clear, #show {
+    padding: 10px 19px;
     margin: 10px 0;
     font-size: 16px;
     background-color: #d42222;
@@ -33,7 +33,7 @@ html
     border-radius: 5px;
     cursor: pointer;
 }
-#clear:hover {
+#clear:hover, #show:hover {
     background-color: #a04949; /* dark red */
 }
 
@@ -107,3 +107,4 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
