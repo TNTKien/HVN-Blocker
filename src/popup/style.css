@@ -24,7 +24,7 @@ html
     cursor: pointer;
 }
 #clear, #show {
-    padding: 10px 19px;
+    padding: 10px 14px;
     margin: 10px 0;
     font-size: 16px;
     background-color: #d42222;
@@ -35,6 +35,21 @@ html
 }
 #clear:hover, #show:hover {
     background-color: #a04949; /* dark red */
+}
+
+#import, #export {
+    padding: 10px 13.5px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #1593ce; /* green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#import:hover, #export:hover {
+    background-color: #0f6b8b; /* dark green */
 }
 
 #addId:hover, #addString:hover {

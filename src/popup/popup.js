@@ -293,3 +293,68 @@ document.getElementById('show').addEventListener('click', async function() {
         showNotification(msg, 5000);
     });
 });
+
+document.getElementById('export').addEventListener('click', function() {
+    let getBlockedTags = new Promise((resolve, reject) => {
+        chrome.storage.sync.get('blockedTags', function(data) {
+            resolve(data.blockedTags);
+        });
+    });
+
+    let getBlockedUsers = new Promise((resolve, reject) => {
+        chrome.storage.sync.get('blockedUsers', function(data) {
+            resolve(data.blockedUsers);
+        });
+    });
+
+    Promise.all([getBlockedTags, getBlockedUsers]).then(values => {
+        let data = {
+            tags: values[0] || [],
+            users: values[1] || []
+        };
+    
+        let json = JSON.stringify(data, null, 2); // Convert data to JSON string with indentation
+        let blob = new Blob([json], {type: 'application/json'}); // Change MIME type to 'application/json'
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = 'blocked.json'; // Change file extension to .json
+        a.click();
+    });
+});
+
+document.getElementById('import').addEventListener('click', function() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.click();
+
+    input.addEventListener('change', function() {
+        let file = input.files[0];
+        let reader = new FileReader();
+
+        reader.onload = function(e) {
+            let data = JSON.parse(e.target.result);
+            let blockedTags = data.tags;
+            let blockedUsers = data.users;
+
+            let setBlockedTags = new Promise((resolve, reject) => {
+                chrome.storage.sync.set({blockedTags: blockedTags}, function() {
+                    resolve();
+                });
+            });
+
+            let setBlockedUsers = new Promise((resolve, reject) => {
+                chrome.storage.sync.set({blockedUsers: blockedUsers}, function() {
+                    resolve();
+                });
+            });
+
+            Promise.all([setBlockedTags, setBlockedUsers]).then(() => {
+                showNotification('Import thành công!');
+            });
+        };
+
+        reader.readAsText(file);
+    });
+});
