@@ -318,7 +318,8 @@ document.getElementById('export').addEventListener('click', function() {
         let url = URL.createObjectURL(blob);
         let a = document.createElement('a');
         a.href = url;
-        a.download = 'blocked.json'; // Change file extension to .json
+        let time = new Date().toLocaleDateString().split('/').reverse().join('-');
+        a.download = `blocked-${time}.json`;
         a.click();
     });
 });
