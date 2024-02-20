@@ -1,8 +1,8 @@
 ## Changelogs
-- 20/02/2023:
+- 20/02/2024:
     - Thêm nút hiển thị tag và chủ thớt đã chặn.
     - Thêm chức năng import/export danh sách đã chặn.
-- 19/02/2023: Hỗ trợ trang tìm kiếm nâng cao.
+- 19/02/2024: Hỗ trợ trang tìm kiếm nâng cao.
 
 ## Các tính năng hiện có:
 - [x] Ẩn truyện có chứa tag không mong muốn.
