@@ -1,7 +1,6 @@
 let BlockedTags = [];
 let BlockedUsers = [];
 
-
 window.onload = async function On() {
     chrome.storage.sync.get('blockedTags', function(result) {
         BlockedTags = result.blockedTags;
@@ -27,35 +26,53 @@ window.onload = async function On() {
         }
         console.log('Current mode is ' + mode);
     });
-    
+
     //thịnh hành
-    if (document.getElementsByClassName("block-top").length > 0) {
+    if(IsClassExist("block-top")){
         const trending = document.getElementsByClassName("block-top")[0];
         const ulTrending = trending.getElementsByTagName("ul")[0];
         for (let i = 0; i < ulTrending.children.length; i++) {
             const url = ulTrending.children[i].getElementsByTagName("a")[0].href;
-            //await BlurBlocked(ulTrending.children[i], url);
             await Blocker(mode, ulTrending.children[i], url);
-        }
-    }
+        };
+    };
 
     //mới cập nhật
-    const items = document.getElementsByClassName("item");
-    for (let i = 0; i < items.length; i++) {
-        const url = items[i].getElementsByTagName("a")[0].href;
-        //await BlurBlocked(items[i], url);
-        await Blocker(mode, items[i], url);
+    if(IsClassExist("item")){
+        const items = document.getElementsByClassName("item");
+        for (let i = 0; i < items.length; i++) {
+            const url = items[i].getElementsByTagName("a")[0].href;
+            await Blocker(mode, items[i], url);
+        };
     };
 
     //tìm kiếm nâng cao
-    const searchli = document.getElementsByClassName("search-li");
-    if(searchli.length == 0) return;
-    for (let i = 0; i < searchli.length; i++) {
-        const url = searchli[i].getElementsByTagName("a")[0].href;
-        //await BlurBlocked(searchli[i], url);
-        await Blocker(mode, searchli[i], url);
+    if(IsClassExist("search-li")){
+        const searchli = document.getElementsByClassName("search-li");
+        if(searchli.length == 0) return;
+        for (let i = 0; i < searchli.length; i++) {
+            const url = searchli[i].getElementsByTagName("a")[0].href;
+            //await BlurBlocked(searchli[i], url);
+            await Blocker(mode, searchli[i], url);
+        };
     };
+    
+    //truyện mới đăng
+    if(IsClassExist("page-new")){
+        const pageNew = document.getElementsByClassName("page-new")[0];
+        const liPageNew = pageNew.getElementsByTagName("li");
+        for (let i = 0; i < liPageNew.length; i++) {
+            const url = liPageNew[i].getElementsByTagName("a")[0].href;
+            await Blocker(mode, liPageNew[i], url);
+        };
 
+        const pageRandom = document.getElementsByClassName("page-new")[1];
+        const liPageRandom = pageRandom.getElementsByTagName("li");
+        for (let i = 0; i < liPageRandom.length; i++) {
+            const url = liPageRandom[i].getElementsByTagName("a")[0].href;
+            await Blocker(mode, liPageRandom[i], url);
+        };
+    };
 };  
 
 async function Blocker(mode, element, url) {
@@ -112,4 +129,8 @@ async function BlurBlocked(li, url) {
             li.style.filter = "blur(5px)"; 
         }
     }
+};
+
+function IsClassExist(className) {
+    return document.getElementsByClassName(className).length > 0;
 };
