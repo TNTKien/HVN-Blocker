@@ -17,6 +17,34 @@ function showErrNotification(text) {
     }, 3000);
 }
 
+function getMode(callback) {
+    chrome.storage.sync.get('mode', function(data) {
+        callback(data.mode);
+    });
+}
+
+function setMode(newMode) {
+    chrome.storage.sync.set({mode: newMode}, function() {
+        console.log('Mode is set to ' + newMode);
+    });
+};
+
+function toggleMode() {
+    getMode(function(currentMode) {
+        let newMode = currentMode === 'remove' ? 'blur' : 'remove';
+        setMode(newMode);
+    });
+}
+
+document.getElementById('toggle').addEventListener('click', function() {
+    toggleMode();
+    getMode(function(crmode) {
+        //alert(crmode);
+        const message = 'Đã đổi sang chế độ' + (crmode === 'blur' ? ' ẩn!' : ' làm mờ!');
+        showNotification(message, 3000);
+    });
+});
+
 document.getElementById('addId').addEventListener('click', function() {
     var id = document.getElementById('id').value;
     if (id === '') {
@@ -307,10 +335,17 @@ document.getElementById('export').addEventListener('click', function() {
         });
     });
 
-    Promise.all([getBlockedTags, getBlockedUsers]).then(values => {
+    let getMode = new Promise((resolve, reject) => {
+        chrome.storage.sync.get(['mode'], function(data) {
+            resolve(data.mode);
+        });
+    });
+
+    Promise.all([getBlockedTags, getBlockedUsers, getMode]).then(values => {
         let data = {
             tags: values[0] || [],
-            users: values[1] || []
+            users: values[1] || [],
+            mode: values[2] = values[2] === 'remove' ? 'remove' : 'blur'
         };
     
         let json = JSON.stringify(data, null, 2); // Convert data to JSON string with indentation
@@ -351,7 +386,13 @@ document.getElementById('import').addEventListener('click', function() {
                 });
             });
 
-            Promise.all([setBlockedTags, setBlockedUsers]).then(() => {
+            let setMode = new Promise((resolve, reject) => {
+                chrome.storage.sync.set({mode: data.mode}, function() {
+                    resolve();
+                });
+            });
+
+            Promise.all([setBlockedTags, setBlockedUsers, setMode]).then(() => {
                 showNotification('Import thành công!');
             });
         };
@@ -359,3 +400,4 @@ document.getElementById('import').addEventListener('click', function() {
         reader.readAsText(file);
     });
 });
+

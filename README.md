@@ -1,12 +1,14 @@
 ## Changelogs
+- 21/02/2024:
+    - Thêm chế độ làm mờ (blur).
 - 20/02/2024:
     - Thêm nút hiển thị tag và chủ thớt đã chặn.
     - Thêm chức năng import/export danh sách đã chặn.
 - 19/02/2024: Hỗ trợ trang tìm kiếm nâng cao.
 
 ## Các tính năng hiện có:
-- [x] Ẩn truyện có chứa tag không mong muốn.
-- [x] Ẩn truyện đăng bởi chủ thớt chỉ định.
+- [x] Ẩn/Làm mờ truyện có chứa tag không mong muốn.
+- [x] Ẩn/Làm mờ truyện đăng bởi chủ thớt chỉ định.
 - [x] Hỗ trợ trang tìm kiếm nâng cao.
 
 ## Cài đặt

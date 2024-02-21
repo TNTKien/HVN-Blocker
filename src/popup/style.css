@@ -24,7 +24,7 @@ html
     cursor: pointer;
 }
 #clear, #show {
-    padding: 10px 14px;
+    padding: 10px 9px;
     margin: 10px 0;
     font-size: 16px;
     background-color: #d42222;
@@ -38,7 +38,7 @@ html
 }
 
 #import, #export {
-    padding: 10px 13.5px;
+    padding: 10px 9px;
     margin: 10px 0;
     font-size: 16px;
     background-color: #1593ce; /* green */
@@ -48,7 +48,18 @@ html
     cursor: pointer;
 }
 
-#import:hover, #export:hover {
+#toggle {
+    padding: 10px 11px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #1593ce; /* green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#import:hover, #export:hover, #toggle:hover {
     background-color: #0f6b8b; /* dark green */
 }
 
