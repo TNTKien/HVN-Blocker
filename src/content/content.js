@@ -26,7 +26,7 @@ window.onload = async function On() {
         }
         console.log('Current mode is ' + mode);
     });
-
+    
     //thịnh hành
     if(IsClassExist("block-top")){
         const trending = document.getElementsByClassName("block-top")[0];
@@ -34,6 +34,13 @@ window.onload = async function On() {
         for (let i = 0; i < ulTrending.children.length; i++) {
             const url = ulTrending.children[i].getElementsByTagName("a")[0].href;
             await Blocker(mode, ulTrending.children[i], url);
+        };
+
+        const trending2 = document.getElementsByClassName("block-top")[1];
+        const ulTrending2 = trending2.getElementsByTagName("ul")[0];
+        for (let i = 0; i < ulTrending2.children.length; i++) {
+            const url = ulTrending2.children[i].getElementsByTagName("a")[0].href;
+            await Blocker(mode, ulTrending2.children[i], url);
         };
     };
 
@@ -56,8 +63,8 @@ window.onload = async function On() {
             await Blocker(mode, searchli[i], url);
         };
     };
-    
-    //truyện mới đăng
+
+    //truyện mới đăng, chưa tối ưu
     if(IsClassExist("page-new")){
         const pageNew = document.getElementsByClassName("page-new")[0];
         const liPageNew = pageNew.getElementsByTagName("li");
@@ -73,6 +80,9 @@ window.onload = async function On() {
             await Blocker(mode, liPageRandom[i], url);
         };
     };
+    
+        
+
 };  
 
 async function Blocker(mode, element, url) {
