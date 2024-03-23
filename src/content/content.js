@@ -80,8 +80,6 @@ window.onload = async function On() {
             await Blocker(mode, liPageRandom[i], url);
         };
     };
-    
-        
 
 };  
 
@@ -127,6 +125,7 @@ async function BlurBlocked(li, url) {
         for (let tag of tags) {
             if (BlockedTags.includes(tag.innerText)) {
                 li.style.filter = "blur(5px)"; 
+                restoreOnHover(li);
                 return;
             }
         }
@@ -137,6 +136,8 @@ async function BlurBlocked(li, url) {
         let userId = uploader.getElementsByTagName("a")[0].href.split("-")[1];
         if (BlockedUsers.includes(userId)) {
             li.style.filter = "blur(5px)"; 
+            restoreOnHover(li);
+            return;
         }
     }
 };
@@ -144,3 +145,12 @@ async function BlurBlocked(li, url) {
 function IsClassExist(className) {
     return document.getElementsByClassName(className).length > 0;
 };
+
+function restoreOnHover(li){
+    li.addEventListener("mouseover", function() {
+        li.style.filter = "none";
+    });
+    li.addEventListener("mouseout", function() {
+        li.style.filter = "blur(5px)";
+    });
+}
