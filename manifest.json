@@ -1,52 +1,45 @@
 {
-    "manifest_version": 3,
-    "name": "HentaiVN Blocker",
-    "description": "như tên gọi.",
-    "version": "1.1.1",
-    "permissions": [
-        "notifications",
-        "storage",
-        "activeTab",
-        "scripting"
-    ],
-    "content_scripts": [
-        {
-            "js": [
-                "src/content/content.js" 
-            ],
-            "matches": [
-                "*://hentaivn.tv/*",
-                "*://hentaivn.lat/*",
-                "*://hentaivn.lol/*",
-                "*://hentaivn.one/*",
-                "*://xhentaivn.com/*",
-                "*://hentaivn.blue/*",
-                "*://henvn.tv/*",
-                "*://hentaivn.bid/*",
-                "*://zhentaivn.net/*"
-            ]
-        }
-    ],
-    "background": {
-        "service_worker": "src/background/background.js",
-        "type": "module",
-        "matches": [
-            "*://hentaivn.tv/*"
-        ]
-    },
-    "action": {
-        "default_popup": "src/popup/popup.html",
-        "default_icon": {
-            "16": "assets/tu.png",
-            "32": "assets/tu.png",
-            "48": "assets/tu.png",
-            "128": "assets/tu.png"
-        }
-    },
-    "icons": {
-        "16": "assets/tu.png",
-        "32": "assets/tu.png",
-        "48": "assets/tu.png",
-        "128": "assets/tu.png"
+  "manifest_version": 3,
+  "name": "HentaiVN Blocker",
+  "description": "như tên gọi.",
+  "version": "1.1.1",
+  "permissions": ["notifications", "storage", "activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "js": ["src/content/content.js"],
+      "matches": [
+        "*://hentaivn.tv/*",
+        "*://hentaivn.lat/*",
+        "*://hentaivn.lol/*",
+        "*://hentaivn.one/*",
+        "*://xhentaivn.com/*",
+        "*://hentaivn.blue/*",
+        "*://henvn.tv/*",
+        "*://hentaivn.bid/*",
+        "*://zhentaivn.net/*",
+        "*://hentaivn.icu/*",
+        "*://hentaihvn.tv/*"
+      ]
     }
+  ],
+  "background": {
+    "service_worker": "src/background/background.js",
+    "type": "module",
+    "matches": ["*://hentaivn.tv/*"]
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "assets/tu.png",
+      "32": "assets/tu.png",
+      "48": "assets/tu.png",
+      "128": "assets/tu.png"
+    }
+  },
+  "icons": {
+    "16": "assets/tu.png",
+    "32": "assets/tu.png",
+    "48": "assets/tu.png",
+    "128": "assets/tu.png"
+  }
 }
