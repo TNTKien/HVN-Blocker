@@ -12,6 +12,7 @@
 - [x] Hỗ trợ trang tìm kiếm nâng cao.
 
 ## Cài đặt
+- NOTE: trong trường hợp web đổi tên miền mà tôi chưa update, hãy dùng tên miền [hentaihvn.tv](https://hentaihvn.tv/)
 - Tải về [tại đây](https://github.com/TNTKien/HVN-Blocker/releases) và giải nén file vừa tải.
 - Mở phần "Manage Extensions" trong trình duyệt và **BẬT** `Developer mode`.
 - Chọn `Load unpacked` và load thu mục vừa giải nén được ở trên (xem video bên dưới).
