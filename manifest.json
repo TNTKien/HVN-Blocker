@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "HentaiVN Blocker",
   "description": "như tên gọi.",
-  "version": "1.1.1",
+  "version": "1.5.1",
   "permissions": ["notifications", "storage", "activeTab", "scripting"],
   "content_scripts": [
     {
@@ -29,7 +29,7 @@
   "background": {
     "service_worker": "src/background/background.js",
     "type": "module",
-    "matches": ["*://hentaivn.tv/*"]
+    "matches": ["*://hentaihvn.tv/*"]
   },
   "action": {
     "default_popup": "src/popup/popup.html",
