@@ -4,6 +4,11 @@
 
 ## Changelogs
 
+- 16/08/2024:
+
+  - Fix linh tinh.
+  - Thêm phiên bản mobile, tạm thời block được tag, chưa hỗ trợ các trang tìm kiếm, chủ thớt hoặc thể loại.
+
 - 21/02/2024:
   - Thêm chế độ làm mờ (blur).
 - 20/02/2024:
@@ -27,6 +32,6 @@
   2. Tải về bản mới nhất tại [releases](https://github.com/TNTKien/HVN-Blocker/releases) và giải nén.
   3. Xóa extension cũ và load lại thư mục mới; hoặc Copy đè **tất cả** các file trong thư mục mới vào thư mục cũ, rồi click ↺ ở phần "Manage Extensions".
 
-## Video
+## Demo
 
 https://github.com/TNTKien/HVN-Blocker/assets/95180188/e62c88bd-b1cc-4ed0-b32f-1e331ab4a52c
