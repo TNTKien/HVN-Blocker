@@ -5,7 +5,7 @@ let mode = "blur";
 window.onload = async function On() {
   chrome.storage.sync.get(
     ["blockedTags", "blockedUsers", "mode"],
-    function (result) {
+    async function (result) {
       BlockedTags = result.blockedTags || [];
       BlockedUsers = result.blockedUsers || [];
       mode = result.mode || "blur";
@@ -20,6 +20,23 @@ window.onload = async function On() {
       );
       console.log("Current mode is " + mode);
 
+      if (isIdExist("main-ajax")) {
+        const mainAjax = document.getElementById("main-ajax");
+        const message = document.createElement("p");
+        message.style.cssText =
+          "width: 615px; font-size: 15px; text-align: center; background: #f1efef; color: #000; margin: 10px auto 0px; border: 0px solid #ccc; border-radius: 4px; font-weight: bold;";
+        message.innerHTML = `
+            <span style="background: #2a9fe2;color: #fff;padding: 4px;border-radius: 4px;line-height: 30px;margin-right: 5px;">
+                <b>HVN Blocker</b>
+            </span>
+            Bạn đang dùng chế độ xem [Ngang], hãy đổi sang chế độ <a href="javascript:;" onclick="clickActionz1('1');" style="color: darkcyan;">[Dọc]</a> để mình có thể hoạt động nhé!
+        `;
+        mainAjax.parentNode.insertBefore(message, mainAjax);
+
+        const br = document.createElement("br");
+        mainAjax.parentNode.insertBefore(br, mainAjax);
+      }
+
       processElements("block-top", "ul", mode);
       processElements("item", "a", mode);
       processElements("search-li", "a", mode);
@@ -29,9 +46,9 @@ window.onload = async function On() {
 
 async function processElements(className, tagName, mode) {
   const elements = document.getElementsByClassName(className);
-
+  console.log(className, elements);
   for (let element of elements) {
-    if (className === "block-top" && IsClassExist(className)) {
+    if (className === "block-top") {
       const ul = element.getElementsByTagName(tagName)[0];
       for (let child of ul.children) {
         const url = child.getElementsByTagName("a")[0].href;
@@ -96,6 +113,10 @@ function checkBlocked(doc, li) {
 
 function IsClassExist(className) {
   return document.getElementsByClassName(className).length > 0;
+}
+
+function isIdExist(id) {
+  return document.getElementById(id) !== null;
 }
 
 function restoreOnHover(li) {
