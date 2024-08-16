@@ -6,7 +6,7 @@
   "permissions": ["notifications", "storage", "activeTab", "scripting"],
   "content_scripts": [
     {
-      "js": ["src/content/content.js"],
+      "js": ["src/content/mobile.js"],
       "matches": [
         "*://hentaivn.tv/*",
         "*://hentaivn.lat/*",
