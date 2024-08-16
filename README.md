@@ -24,7 +24,7 @@
 
 ## Cài đặt
 
-- Đối với bản mobile, chỉ có thể dùng trên các trình duyệt hỗ trợ cài đặt extension (VD: [Kiwi Browser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser)).
+- Đối với bản mobile, chỉ có thể dùng trên các trình duyệt hỗ trợ cài đặt extension (VD: [Kiwi Browser](https://play.google.com/store/apps/details?id=com.kiwibrowser.browser)). Cách cài đặt vui lòng tự tìm hiểu, nếu có thời gian tôi sẽ làm video cho cả 2 phiên bản sau.
 - Tải về [tại đây](https://github.com/TNTKien/HVN-Blocker/releases) và giải nén file vừa tải.
 - Mở phần "Manage Extensions" trong trình duyệt và **BẬT** `Developer mode`.
 - Chọn `Load unpacked` và load thu mục vừa giải nén được ở trên (xem video bên dưới).
