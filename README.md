@@ -4,6 +4,10 @@
 
 ## Changelogs
 
+- 18/08/2024:
+
+  - Thêm tính năng auto vuốt ve/tắm cho waifu (chỉ hỗ trợ bản pc).
+
 - 16/08/2024:
 
   - Fix linh tinh.
