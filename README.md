@@ -4,9 +4,13 @@
 
 ## Changelogs
 
+- 26/08/2024:
+
+  - Thêm chức năng tải truyện (chỉ hỗ trợ bản PC).
+
 - 18/08/2024:
 
-  - Thêm tính năng auto vuốt ve/tắm cho waifu (chỉ hỗ trợ bản pc).
+  - Thêm tính năng auto vuốt ve/tắm cho waifu (chỉ hỗ trợ bản PC).
 
 - 16/08/2024:
 
@@ -25,6 +29,10 @@
 - [x] Ẩn/Làm mờ truyện có chứa tag không mong muốn.
 - [x] Ẩn/Làm mờ truyện đăng bởi chủ thớt chỉ định.
 - [x] Hỗ trợ trang tìm kiếm nâng cao.
+- [x] Import/Export danh sách đã chặn.
+- [x] Hiển thị tag và chủ thớt đã chặn.
+- [x] Vuốt ve/tắm cho waifu oneclick (chỉ hỗ trợ bản PC).
+- [x] Tải truyện (chỉ hỗ trợ bản PC).
 
 ## Cài đặt
 

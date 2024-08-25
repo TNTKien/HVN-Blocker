@@ -1,12 +1,24 @@
 {
   "manifest_version": 3,
   "name": "HentaiVN Blocker",
-  "description": "như tên gọi.",
-  "version": "1.5.5",
+  "version": "2.0.0",
+  "description": "Chặn thể loại không mong muốn, kèm theo một số tiện ích khác.",
+  "icons": {
+    "16": "icons/tu.png",
+    "32": "icons/tu.png",
+    "48": "icons/tu.png",
+    "128": "icons/tu.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Hvn",
+    "default_popup": "popup.html"
+  },
   "permissions": ["notifications", "storage", "activeTab", "scripting"],
   "content_scripts": [
     {
-      "js": ["src/content/content.js"],
       "matches": [
         "*://hentaivn.tv/*",
         "*://hentaivn.lat/*",
@@ -24,28 +36,8 @@
         "*://hentaiayame.com/*",
         "*://hentaihvn.tv/*"
       ],
-      "type": "module"
+      "run_at": "document_idle",
+      "js": ["contentScript.js"]
     }
-  ],
-
-  "background": {
-    "service_worker": "src/background/background.js",
-    "type": "module",
-    "matches": ["*://hentaihvn.tv/*"]
-  },
-  "action": {
-    "default_popup": "src/popup/popup.html",
-    "default_icon": {
-      "16": "assets/tu.png",
-      "32": "assets/tu.png",
-      "48": "assets/tu.png",
-      "128": "assets/tu.png"
-    }
-  },
-  "icons": {
-    "16": "assets/tu.png",
-    "32": "assets/tu.png",
-    "48": "assets/tu.png",
-    "128": "assets/tu.png"
-  }
+  ]
 }
