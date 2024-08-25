@@ -23,9 +23,11 @@
         "*://hentaivn.homes/*",
         "*://hentaiayame.com/*",
         "*://hentaihvn.tv/*"
-      ]
+      ],
+      "type": "module"
     }
   ],
+
   "background": {
     "service_worker": "src/background/background.js",
     "type": "module",

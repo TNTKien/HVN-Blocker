@@ -43,8 +43,98 @@ window.onload = async function On() {
     }
   );
 
-  if (!window.location.href.includes("my_waifu.php")) return;
+  Waifu();
+  Downloader();
+};
 
+async function processElements(className, tagName, mode) {
+  if (!IsClassExist(className)) return;
+
+  const elements = document.getElementsByClassName(className);
+  console.log(className, elements);
+  for (let element of elements) {
+    if (className === "block-top") {
+      const ul = element.getElementsByTagName(tagName)[0];
+      for (let child of ul.children) {
+        const url = child.getElementsByTagName("a")[0].href;
+        await Blocker(mode, child, url);
+      }
+    } else {
+      const url = element.getElementsByTagName(tagName)[0].href;
+      await Blocker(mode, element, url);
+    }
+  }
+}
+
+async function Blocker(mode, element, url) {
+  if (mode === "remove") {
+    await RemoveBlocked(element, url);
+  } else {
+    await BlurBlocked(element, url);
+  }
+}
+
+async function RemoveBlocked(li, url) {
+  let doc = await fetchDocument(url);
+  if (checkBlocked(doc, li)) {
+    li.style.display = "none";
+  }
+}
+
+async function BlurBlocked(li, url) {
+  let doc = await fetchDocument(url);
+  if (checkBlocked(doc, li)) {
+    li.style.filter = "blur(5px)";
+    restoreOnHover(li);
+  }
+}
+
+async function fetchDocument(url) {
+  let res = await fetch(url);
+  let text = await res.text();
+  return new DOMParser().parseFromString(text, "text/html");
+}
+
+function checkBlocked(doc, li) {
+  if (BlockedTags.length > 0) {
+    let tags = doc.getElementsByClassName("tag");
+    for (let tag of tags) {
+      if (BlockedTags.includes(tag.innerText)) {
+        return true;
+      }
+    }
+  }
+
+  if (BlockedUsers.length > 0) {
+    let uploader = doc.getElementsByClassName("name-uploader")[0];
+    let userId = uploader.getElementsByTagName("a")[0].href.split("-")[1];
+    if (BlockedUsers.includes(userId)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function IsClassExist(className) {
+  return document.getElementsByClassName(className).length > 0;
+}
+
+function isIdExist(id) {
+  return document.getElementById(id) !== null;
+}
+
+function restoreOnHover(li) {
+  li.addEventListener("mouseover", function () {
+    li.style.filter = "none";
+  });
+  li.addEventListener("mouseout", function () {
+    li.style.filter = "blur(5px)";
+  });
+}
+
+function Waifu() {
+  if (!window.location.href.includes("my_waifu.php")) return;
   const allWaifu = document.createElement("ol");
   allWaifu.className = "prizesLOL2";
   allWaifu.style.cssText = "padding-bottom: 0;";
@@ -154,92 +244,6 @@ window.onload = async function On() {
     //progressBar.style.display = "none";
     location.reload();
   });
-};
-
-async function processElements(className, tagName, mode) {
-  if (!IsClassExist(className)) return;
-
-  const elements = document.getElementsByClassName(className);
-  console.log(className, elements);
-  for (let element of elements) {
-    if (className === "block-top") {
-      const ul = element.getElementsByTagName(tagName)[0];
-      for (let child of ul.children) {
-        const url = child.getElementsByTagName("a")[0].href;
-        await Blocker(mode, child, url);
-      }
-    } else {
-      const url = element.getElementsByTagName(tagName)[0].href;
-      await Blocker(mode, element, url);
-    }
-  }
-}
-
-async function Blocker(mode, element, url) {
-  if (mode === "remove") {
-    await RemoveBlocked(element, url);
-  } else {
-    await BlurBlocked(element, url);
-  }
-}
-
-async function RemoveBlocked(li, url) {
-  let doc = await fetchDocument(url);
-  if (checkBlocked(doc, li)) {
-    li.style.display = "none";
-  }
-}
-
-async function BlurBlocked(li, url) {
-  let doc = await fetchDocument(url);
-  if (checkBlocked(doc, li)) {
-    li.style.filter = "blur(5px)";
-    restoreOnHover(li);
-  }
-}
-
-async function fetchDocument(url) {
-  let res = await fetch(url);
-  let text = await res.text();
-  return new DOMParser().parseFromString(text, "text/html");
-}
-
-function checkBlocked(doc, li) {
-  if (BlockedTags.length > 0) {
-    let tags = doc.getElementsByClassName("tag");
-    for (let tag of tags) {
-      if (BlockedTags.includes(tag.innerText)) {
-        return true;
-      }
-    }
-  }
-
-  if (BlockedUsers.length > 0) {
-    let uploader = doc.getElementsByClassName("name-uploader")[0];
-    let userId = uploader.getElementsByTagName("a")[0].href.split("-")[1];
-    if (BlockedUsers.includes(userId)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function IsClassExist(className) {
-  return document.getElementsByClassName(className).length > 0;
-}
-
-function isIdExist(id) {
-  return document.getElementById(id) !== null;
-}
-
-function restoreOnHover(li) {
-  li.addEventListener("mouseover", function () {
-    li.style.filter = "none";
-  });
-  li.addEventListener("mouseout", function () {
-    li.style.filter = "blur(5px)";
-  });
 }
 
 // async function getVuotve() {
@@ -250,3 +254,53 @@ function restoreOnHover(li) {
 //   }
 //   console.log(formData);
 // }
+
+async function Downloader() {
+  if (!window.location.href.includes("doc-truyen")) return;
+  const arr = [
+    "https://i3.hhentai.net/images/2022/04/23/1650694289-creasuka.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/22/1724339281-fbpage.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378915-01.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378916-02.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378919-03.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378921-04.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378925-05.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378927-06.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378931-07.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378933-08.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378937-09.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378939-10.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378942-11.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378946-12.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378948-13.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378953-14.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378955-15.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378959-16.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378961-17.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378963-18.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378968-19.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378971-20.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378974-21.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378978-22.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378981-23.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378984-24.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378987-25.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378990-26.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378993-27.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378995-28.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724415318-29.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378997-30.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378998-31.jpg?imgmax=1200",
+    "https://up2.hhentai.net/images/1200/2024/08/23/1724378999-32.jpg?imgmax=1200",
+    "https://i3.hhentai.net/images/2022/05/07/1651907567-caulikeasuka.jpg?imgmax=1200",
+  ];
+
+  const downloadAll = document.createElement("button");
+  downloadAll.innerHTML = "Download All";
+  downloadAll.style.cssText = "padding: 5px 10px; margin: 10px 0;";
+  const page = document.getElementsByClassName("page-info")[0];
+
+  page.appendChild(downloadAll);
+
+  downloadAll.addEventListener("click", async function () {});
+}
