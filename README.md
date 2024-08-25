@@ -47,4 +47,6 @@
 
 ## Demo
 
-https://github.com/TNTKien/HVN-Blocker/assets/95180188/e62c88bd-b1cc-4ed0-b32f-1e331ab4a52c
+https://hentaihvn.tv/forum/t62229-tool-tai-truyen-tren-hentaivn-.html
+
+
