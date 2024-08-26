@@ -11,7 +11,8 @@ export function Waifu() {
     );
   const waifuImgDiv = document.createElement('div');
   const img = document.createElement('img');
-  img.src = 'https://i.ibb.co/FBD1Q93/doro-think.png ';
+  img.src =
+    'https://raw.githubusercontent.com/TNTKien/HVN-Blocker/main/public/icons/doro_think.png';
   img.height = 100;
   waifuImgDiv.style.cssText = 'float: left;height: 100px;';
   waifuImgDiv.appendChild(img);

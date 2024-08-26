@@ -6,6 +6,7 @@
 
 - 26/08/2024:
 
+  - Thêm chức năng xem truyện bằng "Server HD" (xem độ phân giải gốc, chi tiết xem thêm bên dưới).
   - Thêm chức năng tải truyện (chỉ hỗ trợ bản PC).
 
 - 18/08/2024:
@@ -33,6 +34,7 @@
 - [x] Hiển thị tag và chủ thớt đã chặn.
 - [x] Vuốt ve/tắm cho waifu oneclick (chỉ hỗ trợ bản PC).
 - [x] Tải truyện (chỉ hỗ trợ bản PC).
+- [x] Khôi phục "Server HD" (chỉ hỗ trợ bản PC): ảnh truyện hiển thị trên HVN sẽ bị bóp chất lượng ảnh 1 chút, trước đây vốn có Server HD có thể xem chất lượng ảnh gốc, nhưng sau đó bị bỏ đi. Chức năng này nhằm mục đích khôi phục lại Server HD.
 
 ## Cài đặt
 
@@ -48,5 +50,3 @@
 ## Demo
 
 https://github.com/user-attachments/assets/b75ba056-b507-4859-9fc0-358524e3e55a
-
-
