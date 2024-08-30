@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HentaiVN Blocker",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "Chặn thể loại không mong muốn, kèm theo một số tiện ích khác.",
   "icons": {
     "16": "icons/tu.png",

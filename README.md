@@ -4,6 +4,10 @@
 
 ## Changelogs
 
+- 30/08/2024:
+
+  - Thêm tính năng tuỳ chỉnh waifu theo ý muốn.
+
 - 26/08/2024:
 
   - Thêm chức năng xem truyện bằng "Server HD" (xem độ phân giải gốc, chi tiết xem thêm bên dưới).
