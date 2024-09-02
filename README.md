@@ -4,6 +4,11 @@
 
 ## Changelogs
 
+- 02/09/2024:
+
+  - Fix lỗi tải truyện.
+  - Chặn 1 số quảng cáo.
+
 - 30/08/2024:
 
   - Thêm tính năng tuỳ chỉnh waifu theo ý muốn.

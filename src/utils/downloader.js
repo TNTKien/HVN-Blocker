@@ -39,64 +39,72 @@ export async function Downloader() {
 
   // Add event listener to download button
   table.addEventListener('click', async function (e) {
-    if (e.target.tagName === 'BUTTON') {
-      const id = e.target.id;
-      const chapterTitle = e.target.title;
-      const url = `https://hentaihvn.tv/${id}-xem-truyen-id-id.html`;
+    if (!e.target.tagName === 'BUTTON') return;
 
-      const response = await fetch(url);
-      const text = await response.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, 'text/html');
+    const id = e.target.id;
+    const chapterTitle = e.target.title;
+    const url = `https://hentaihvn.tv/${id}-xem-truyen-id-id.html`;
 
-      const images = doc.querySelectorAll('#image img');
-      const zip = new JSZip();
-      const folder = zip.folder(id);
+    if (!isAutoLoadOff()) document.cookie = 'view1=1; path=/';
 
-      // Show and configure progress bar
-      const progressBar = document.getElementById(`progress-${id}`);
-      const downloadButton = e.target;
-      progressBar.max = images.length;
-      progressBar.value = 0;
-      progressBar.style.display = 'inline'; // Show progress bar
-      downloadButton.style.display = 'none'; // Hide download button
+    const response = await fetch(url);
+    const text = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'text/html');
 
-      for (let i = 0; i < images.length; i++) {
-        const image = images[i];
-        let src = image.getAttribute('src').split('?')[0];
-        if (src.includes('/1200/')) {
-          src = src.replace('/1200/', '/9999/');
-        }
+    const images = doc.querySelectorAll('#image img');
+    const zip = new JSZip();
+    const folder = zip.folder(id);
 
-        const filename = src.split('/').pop();
+    // Show and configure progress bar
+    const progressBar = document.getElementById(`progress-${id}`);
+    const downloadButton = e.target;
+    progressBar.max = images.length;
+    progressBar.value = 0;
+    progressBar.style.display = 'inline'; // Show progress bar
+    downloadButton.style.display = 'none'; // Hide download button
 
-        const response = await fetch(proxyUrl + encodeURIComponent(src), {
-          headers: {
-            referer: 'https://hentaihvn.tv/',
-          },
-        });
-        const blob = await response.blob();
-        console.log(blob);
-        folder.file(filename, blob);
-
-        // Update progress bar
-        progressBar.value = i + 1;
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      let src = image.getAttribute('src').split('?')[0];
+      if (src.includes('/1200/')) {
+        src = src.replace('/1200/', '/9999/');
       }
 
-      const content = await folder.generateAsync({ type: 'blob' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(content);
-      a.download = `${title}-${chapterTitle}.zip`;
-      a.click();
+      const filename = src.split('/').pop();
 
-      zip.remove(id);
-      URL.revokeObjectURL(a.href);
+      const response = await fetch(proxyUrl + encodeURIComponent(src), {
+        headers: {
+          referer: 'https://hentaihvn.tv/',
+        },
+      });
+      const blob = await response.blob();
+      console.log(blob);
+      folder.file(filename, blob);
 
-      // Hide progress bar and show download button
-      progressBar.style.display = 'none';
-      downloadButton.style.display = 'inline';
-      downloadButton.textContent = '✅';
-      downloadButton.style.backgroundColor = '#27ae60';
+      // Update progress bar
+      progressBar.value = i + 1;
     }
+
+    const content = await folder.generateAsync({ type: 'blob' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(content);
+    a.download = `${title}-${chapterTitle}.zip`;
+    a.click();
+
+    zip.remove(id);
+    URL.revokeObjectURL(a.href);
+
+    // Hide progress bar and show download button
+    progressBar.style.display = 'none';
+    downloadButton.style.display = 'inline';
+    downloadButton.textContent = '✅';
+    downloadButton.style.backgroundColor = '#27ae60';
   });
+}
+
+function isAutoLoadOff() {
+  return document.cookie
+    .split(';')
+    .find((cookie) => cookie.includes('view1=1'));
 }

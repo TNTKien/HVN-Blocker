@@ -3,6 +3,7 @@
 import { Waifu } from './utils/waifu';
 import { Downloader } from './utils/downloader';
 import { UnlockHD } from './utils/unlock';
+import { RemoveAds } from './utils/removeAds';
 
 let BlockedTags = [];
 let BlockedUsers = [];
@@ -51,6 +52,7 @@ chrome.storage.sync.get(
 Waifu();
 Downloader();
 UnlockHD();
+RemoveAds();
 
 async function processElements(className, tagName, mode) {
   if (!IsClassExist(className)) return;
