@@ -4,6 +4,11 @@
 
 ## Changelogs
 
+- 07/09/2024:
+
+  - Update tên miền phụ mới.
+  - Fix lỗi chuyển trang tìm kiếm nâng cao.
+
 - 02/09/2024:
 
   - Fix lỗi tải truyện.
@@ -16,16 +21,17 @@
 - 26/08/2024:
 
   - Thêm chức năng xem truyện bằng "Server HD" (xem độ phân giải gốc, chi tiết xem thêm bên dưới).
-  - Thêm chức năng tải truyện (chỉ hỗ trợ bản PC).
+  - Thêm chức năng tải truyện.
 
 - 18/08/2024:
 
-  - Thêm tính năng auto vuốt ve/tắm cho waifu (chỉ hỗ trợ bản PC).
+  - Thêm tính năng auto vuốt ve/tắm cho waifu.
+  - Ngừng phát triển phiên bản mobile vì lười vcl.
 
 - 16/08/2024:
 
   - Fix linh tinh.
-  - Thêm phiên bản mobile, tạm thời block được tag, chưa hỗ trợ các trang tìm kiếm, chủ thớt hoặc thể loại.
+  - Thêm phiên bản mobile, tạm thời chỉ block được tag, chưa hỗ trợ các trang tìm kiếm, chủ thớt hoặc thể loại.
 
 - 21/02/2024:
   - Thêm chế độ làm mờ (blur).
@@ -44,6 +50,7 @@
 - [x] Vuốt ve/tắm cho waifu oneclick (chỉ hỗ trợ bản PC).
 - [x] Tải truyện (chỉ hỗ trợ bản PC).
 - [x] Khôi phục "Server HD" (chỉ hỗ trợ bản PC): ảnh truyện hiển thị trên HVN sẽ bị bóp chất lượng ảnh 1 chút, trước đây vốn có Server HD có thể xem chất lượng ảnh gốc, nhưng sau đó bị bỏ đi. Chức năng này nhằm mục đích khôi phục lại Server HD.
+- [x] Fix 1 số lỗi hiện có của web.
 
 ## Cài đặt
 
