@@ -176,7 +176,7 @@ function OpenUploadSection() {
         const img = document.createElement('img');
         img.src = e.target.result;
         img.style.cssText =
-          'max-width: 100px; max-height: 100px; display: block;';
+          'max-width: 120px; max-height: 120px; display: block; object-fit: cover;';
         imagePreviewContainer.appendChild(img);
       };
       reader.readAsDataURL(file);
