@@ -8,6 +8,7 @@
 
   - Update tên miền phụ mới.
   - Fix lỗi chuyển trang tìm kiếm nâng cao.
+  - Thêm chức năng up ảnh forum.
 
 - 02/09/2024:
 
