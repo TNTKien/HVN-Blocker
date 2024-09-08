@@ -6,6 +6,7 @@ import { UnlockHD } from './utils/unlock';
 import { RemoveAds } from './utils/removeAds';
 import { FixAdvancedSearch } from './utils/advancedSearch';
 import { Upload } from './utils/upload';
+import { Reader } from './utils/reader';
 
 let BlockedTags = [];
 let BlockedUsers = [];
@@ -57,6 +58,7 @@ RemoveAds();
 UnlockHD();
 FixAdvancedSearch();
 Upload();
+Reader();
 
 async function processElements(className, tagName, mode) {
   if (!IsClassExist(className)) return;

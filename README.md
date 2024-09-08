@@ -1,8 +1,13 @@
 ## NOTE
 
 - Trong trường hợp web đổi tên miền mà tôi chưa update kịp, hãy dùng tên miền [hentaihvn.tv](https://hentaihvn.tv/)
+- Một số tính năng chỉ có thể sử dụng trên tên miền kể trên, không hoạt động trên các tên miền phụ.
 
 ## Changelogs
+
+- 09/09/2024:
+
+  - Thêm tính năng đọc truyện từng trang (tương tự nHentai).
 
 - 07/09/2024:
 
@@ -51,7 +56,8 @@
 - [x] Vuốt ve/tắm cho waifu oneclick (chỉ hỗ trợ bản PC).
 - [x] Tải truyện (chỉ hỗ trợ bản PC).
 - [x] Khôi phục "Server HD" (chỉ hỗ trợ bản PC): ảnh truyện hiển thị trên HVN sẽ bị bóp chất lượng ảnh 1 chút, trước đây vốn có Server HD có thể xem chất lượng ảnh gốc, nhưng sau đó bị bỏ đi. Chức năng này nhằm mục đích khôi phục lại Server HD.
-- [x] Fix 1 số lỗi hiện có của web.
+- [x] Fix 1 số lỗi hiện hữu của web.
+- [x] Đọc truyện từng trang (tương tự nHentai).
 
 ## Cài đặt
 
