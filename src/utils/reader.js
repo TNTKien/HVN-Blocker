@@ -156,26 +156,26 @@ function SwitchToSinglePage() {
   imagesFeild.innerHTML = '';
   imagesFeild.appendChild(singlePage);
 
-  document.addEventListener('keydown', (event) => {
-    switch (event.key) {
-      case 'ArrowLeft':
-        if (currentPage > 0) {
-          currentPage--;
-          img.src = allImgs[currentPage];
-          pageNum.textContent = `${currentPage + 1}/${totalPages}`;
-          pageNum2.textContent = `${currentPage + 1}/${totalPages}`;
-        }
-        break;
-      case 'ArrowRight':
-        if (currentPage < totalPages - 1) {
-          currentPage++;
-          img.src = allImgs[currentPage];
-          pageNum.textContent = `${currentPage + 1}/${totalPages}`;
-          pageNum2.textContent = `${currentPage + 1}/${totalPages}`;
-        }
-        break;
-    }
-  });
+  // document.addEventListener('keydown', (event) => {
+  //   switch (event.key) {
+  //     case 'ArrowLeft':
+  //       if (currentPage > 0) {
+  //         currentPage--;
+  //         img.src = allImgs[currentPage];
+  //         pageNum.textContent = `${currentPage + 1}/${totalPages}`;
+  //         pageNum2.textContent = `${currentPage + 1}/${totalPages}`;
+  //       }
+  //       break;
+  //     case 'ArrowRight':
+  //       if (currentPage < totalPages - 1) {
+  //         currentPage++;
+  //         img.src = allImgs[currentPage];
+  //         pageNum.textContent = `${currentPage + 1}/${totalPages}`;
+  //         pageNum2.textContent = `${currentPage + 1}/${totalPages}`;
+  //       }
+  //       break;
+  //   }
+  // });
 
   img.addEventListener('click', (event) => {
     const imgWidth = img.clientWidth;
