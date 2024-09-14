@@ -23,18 +23,18 @@ export function Upload() {
 
 function OpenUploadSection() {
   if (document.getElementById('upload-section')) return;
+  const selectedFiles = [];
   const uploadSection = document.createElement('div');
   uploadSection.id = 'upload-section';
   uploadSection.style.cssText =
     'background: white; padding: 10px; border: 2px solid #ccc; border-radius: 4px; margin-top: 5px; margin-bottom: 10px;';
 
-  // Image field
-  const imageField = document.createElement('input');
-  imageField.type = 'file';
-  imageField.accept = 'image/*';
-  imageField.multiple = true;
-
-  uploadSection.appendChild(imageField);
+  // Drag & Drop area
+  const dropArea = document.createElement('div');
+  dropArea.style.cssText =
+    'border: 2px dashed #ccc; padding: 30px; text-align: center; margin-top: 10px;';
+  dropArea.textContent = 'Drag & Drop images here or click to select';
+  uploadSection.appendChild(dropArea);
 
   // Image preview container
   const imagePreviewContainer = document.createElement('div');
@@ -59,10 +59,20 @@ function OpenUploadSection() {
 
   // Btn group
   const btnGroup = document.createElement('div');
-  btnGroup.style.cssText = `display:flex; gap: 5px;`;
+  btnGroup.style.cssText = `display: flex; justify-content: space-between; gap: 5px;`;
   uploadSection.appendChild(btnGroup);
 
-  //Copy button
+  // Left button container (for copy button)
+  const leftBtnContainer = document.createElement('div');
+  leftBtnContainer.style.cssText = `display: flex; gap: 5px;`;
+  btnGroup.appendChild(leftBtnContainer);
+
+  // Right button container (for submit, clear, cancel buttons)
+  const rightBtnContainer = document.createElement('div');
+  rightBtnContainer.style.cssText = `display: flex; gap: 5px;`;
+  btnGroup.appendChild(rightBtnContainer);
+
+  // Copy button
   const copyBtn = document.createElement('div');
   copyBtn.textContent = 'Copy';
   copyBtn.style.cssText = `
@@ -88,7 +98,7 @@ function OpenUploadSection() {
       alert('Copied!');
     }
   });
-  btnGroup.appendChild(copyBtn);
+  leftBtnContainer.appendChild(copyBtn);
 
   // Submit button
   const submitBtn = document.createElement('div');
@@ -112,7 +122,7 @@ function OpenUploadSection() {
     submitBtn.style.backgroundColor = '#03a9f4';
   });
 
-  btnGroup.appendChild(submitBtn);
+  rightBtnContainer.appendChild(submitBtn);
 
   // Clear button
   const clearBtn = document.createElement('div');
@@ -136,7 +146,7 @@ function OpenUploadSection() {
     clearBtn.style.backgroundColor = '#afaeaa';
   });
 
-  btnGroup.appendChild(clearBtn);
+  rightBtnContainer.appendChild(clearBtn);
 
   // Cancel button
   const cancelBtn = document.createElement('div');
@@ -159,43 +169,64 @@ function OpenUploadSection() {
   cancelBtn.addEventListener('mouseout', () => {
     cancelBtn.style.backgroundColor = '#f64949';
   });
-  btnGroup.appendChild(cancelBtn);
+  rightBtnContainer.appendChild(cancelBtn);
+
+  // Hidden file input
+  const hiddenFileInput = document.createElement('input');
+  hiddenFileInput.type = 'file';
+  hiddenFileInput.accept = 'image/*';
+  hiddenFileInput.multiple = true;
+  hiddenFileInput.style.display = 'none';
+  uploadSection.appendChild(hiddenFileInput);
 
   // Event listeners
-  imageField.addEventListener('change', function (event) {
-    imagePreviewContainer.innerHTML = ''; // Clear previous previews
-    const files = event.target.files;
-    if (files.length > 5) {
-      alert('Bạn chỉ có thể upload tối đa 5 ảnh/lần.');
-      imageField.value = ''; // Clear the selection
-      return;
+  hiddenFileInput.addEventListener('change', function (event) {
+    handleFiles(event.target.files);
+  });
+
+  dropArea.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropArea.style.backgroundColor = '#f1f1f1';
+  });
+
+  dropArea.addEventListener('dragleave', () => {
+    dropArea.style.backgroundColor = 'white';
+  });
+
+  dropArea.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropArea.style.backgroundColor = 'white';
+    const files = event.dataTransfer.files;
+    handleFiles(files);
+  });
+
+  dropArea.addEventListener('click', () => {
+    hiddenFileInput.click();
+  });
+
+  uploadSection.addEventListener('paste', (event) => {
+    const items = event.clipboardData.items;
+    const files = [];
+    for (const item of items) {
+      if (item.kind === 'file' && item.type.startsWith('image/')) {
+        files.push(item.getAsFile());
+      }
     }
-    for (const file of files) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        img.style.cssText =
-          'max-width: 120px; max-height: 120px; display: block; object-fit: cover;';
-        imagePreviewContainer.appendChild(img);
-      };
-      reader.readAsDataURL(file);
-    }
+    handleFiles(files);
   });
 
   submitBtn.addEventListener('click', async function () {
-    const files = imageField.files;
-    if (files.length === 0) {
+    if (selectedFiles.length === 0) {
       alert('Bạn chưa chọn ảnh nào.');
       return;
     }
-    resultField.textContent = `Uploading...0/${files.length}`;
+    resultField.textContent = `Uploading...0/${selectedFiles.length}`;
     resultField.style.display = 'block';
     let imageBBcode = [];
-    for (const file of files) {
+    for (const file of selectedFiles) {
       const res = await postUpAnhtv(file);
       resultField.textContent = `Uploading...${imageBBcode.length + 1}/${
-        files.length
+        selectedFiles.length
       }`;
       imageBBcode.push(res);
     }
@@ -204,11 +235,13 @@ function OpenUploadSection() {
   });
 
   cancelBtn.addEventListener('click', function () {
+    selectedFiles.length = 0;
     uploadSection.remove();
   });
 
   clearBtn.addEventListener('click', function () {
-    imageField.value = '';
+    selectedFiles.length = 0;
+    hiddenFileInput.value = '';
     imagePreviewContainer.innerHTML = '';
     resultField.style.display = 'none';
     copyBtn.style.display = 'none';
@@ -217,6 +250,66 @@ function OpenUploadSection() {
   const gui_bl = document.getElementsByClassName('gui_bl')[0];
   const form = document.getElementsByTagName('form')[0];
   form.insertBefore(uploadSection, gui_bl);
+
+  function handleFiles(files) {
+    if (files.length + imagePreviewContainer.childElementCount > 5) {
+      alert('Bạn chỉ có thể upload tối đa 5 ảnh/lần.');
+      return;
+    }
+
+    //filter image files
+    files = Array.from(files).filter((file) => file.type.startsWith('image/'));
+
+    for (const file of files) {
+      selectedFiles.push(file);
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imgWrapper = document.createElement('div');
+        imgWrapper.style.cssText = 'position: relative; display: inline-block;';
+
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.cssText =
+          'max-width: 120px; max-height: 120px; display: block; object-fit: cover;';
+
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = '&times;'; // Use HTML entity for a better "x" symbol
+        removeBtn.style.cssText = `
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+          `;
+        removeBtn.addEventListener('mouseover', () => {
+          removeBtn.style.background = 'rgba(255, 0, 0, 1)';
+        });
+        removeBtn.addEventListener('mouseout', () => {
+          removeBtn.style.background = 'rgba(255, 0, 0, 0.7)';
+        });
+        removeBtn.addEventListener('click', () => {
+          const index = selectedFiles.indexOf(file);
+          if (index > -1) {
+            selectedFiles.splice(index, 1);
+          }
+          imgWrapper.remove();
+        });
+
+        imgWrapper.appendChild(img);
+        imgWrapper.appendChild(removeBtn);
+        imagePreviewContainer.appendChild(imgWrapper);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }
 
 async function postUpAnhtv(file) {
