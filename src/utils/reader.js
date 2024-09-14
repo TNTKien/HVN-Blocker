@@ -186,16 +186,16 @@ function SwitchToSinglePage() {
       if (currentPage > 0) {
         currentPage--;
         img.src = allImgs[currentPage];
-        pageNum.textContent = `${currentPage + 1} / ${totalPages}`;
-        pageNum2.textContent = `${currentPage + 1} / ${totalPages}`;
+        pageNum.textContent = `${currentPage + 1}/${totalPages}`;
+        pageNum2.textContent = `${currentPage + 1}/${totalPages}`;
       }
     } else {
       // Clicked on the right half
       if (currentPage < totalPages - 1) {
         currentPage++;
         img.src = allImgs[currentPage];
-        pageNum.textContent = `${currentPage + 1} / ${totalPages}`;
-        pageNum2.textContent = `${currentPage + 1} / ${totalPages}`;
+        pageNum.textContent = `${currentPage + 1}/${totalPages}`;
+        pageNum2.textContent = `${currentPage + 1}/${totalPages}`;
       }
     }
   });
