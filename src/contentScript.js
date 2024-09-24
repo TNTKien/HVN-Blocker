@@ -7,6 +7,7 @@ import { RemoveAds } from './utils/removeAds';
 import { FixAdvancedSearch } from './utils/advancedSearch';
 import { Upload } from './utils/upload';
 import { Reader } from './utils/reader';
+import { ReLogin } from './utils/relogin';
 
 let BlockedTags = [];
 let BlockedUsers = [];
@@ -51,7 +52,7 @@ chrome.storage.sync.get(
     processElements('search-li', 'a', mode);
   }
 );
-
+ReLogin();
 Waifu();
 Downloader();
 RemoveAds();
