@@ -5,6 +5,10 @@
 
 ## Changelogs
 
+- 24/09/2024:
+
+  - Thêm tính năng tự động đăng nhập khi bị văng.
+
 - 09/09/2024:
 
   - Thêm chế độ đọc Đơn (tương tự nHentai).
@@ -58,6 +62,7 @@
 - [x] Khôi phục "Server HD" (chỉ hỗ trợ bản PC): ảnh truyện hiển thị trên HVN sẽ bị bóp chất lượng ảnh 1 chút, trước đây vốn có Server HD có thể xem chất lượng ảnh gốc, nhưng sau đó bị bỏ đi. Chức năng này nhằm mục đích khôi phục lại Server HD.
 - [x] Fix 1 số lỗi hiện hữu của web.
 - [x] Chế độ đọc Đơn (tương tự nHentai).
+- [x] Tích hợp server up ảnh forum, tạm thay thế server của web đang lỗi.
 
 ## Cài đặt
 

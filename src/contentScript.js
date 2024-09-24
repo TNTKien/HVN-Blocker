@@ -8,6 +8,7 @@ import { FixAdvancedSearch } from './utils/advancedSearch';
 import { Upload } from './utils/upload';
 import { Reader } from './utils/reader';
 import { ReLogin } from './utils/relogin';
+import { SwitchAcc } from './utils/switchAccount';
 
 let BlockedTags = [];
 let BlockedUsers = [];
@@ -60,6 +61,7 @@ UnlockHD();
 FixAdvancedSearch();
 Upload();
 Reader();
+SwitchAcc();
 
 async function processElements(className, tagName, mode) {
   if (!IsClassExist(className)) return;

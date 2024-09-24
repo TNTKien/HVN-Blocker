@@ -63,7 +63,7 @@ export async function ReLogin() {
   );
 }
 
-function CookieParser() {
+export function CookieParser() {
   const cookies = document.cookie.split(';');
   let obj = {};
   for (let cookie of cookies) {
